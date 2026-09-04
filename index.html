@@ -22,7 +22,6 @@
   <style>
 
     :root {
-      --bg: #f3f1ef;
       --ink: #2c2928;
       --wine: #8e4b5a;
       --line: #ded8d4;
@@ -37,6 +36,7 @@
       width: 100%;
       height: 100%;
       margin: 0;
+      padding: 0;
     }
 
     body {
@@ -54,6 +54,11 @@
       overflow: hidden;
     }
 
+
+    /* ========================================
+       APP
+    ======================================== */
+
     .app {
       width: 100%;
       height: 100%;
@@ -66,14 +71,21 @@
         54px;
     }
 
+
+    /* ========================================
+       CABEÇALHO
+    ======================================== */
+
     header {
       display: flex;
+
       align-items: center;
       justify-content: space-between;
 
       padding: 0 20px;
 
-      background: rgba(255,255,255,.94);
+      background:
+        rgba(255,255,255,.94);
 
       border-bottom:
         1px solid var(--line);
@@ -85,6 +97,7 @@
 
     .brand {
       display: flex;
+
       flex-direction: column;
 
       line-height: 1.05;
@@ -92,6 +105,7 @@
 
     .brand strong {
       font-size: 17px;
+
       letter-spacing: .04em;
     }
 
@@ -175,32 +189,74 @@
       border-color:
         var(--wine);
 
-      color: #ffffff;
+      color:
+        #ffffff;
     }
+
+
+    /* ========================================
+       ÁREA DO CATÁLOGO
+    ======================================== */
 
     main {
       width: 100%;
 
+      min-width: 0;
       min-height: 0;
 
       display: flex;
 
       justify-content: center;
-
       align-items: center;
 
       position: relative;
 
-      padding:
-        14px
-        20px
-        8px;
+      padding: 0;
 
       overflow: hidden;
     }
 
+
+    /* ========================================
+       JANELA QUE RECORTA O LIVRO
+    ======================================== */
+
+    #bookViewport {
+      position: relative;
+
+      overflow: hidden;
+
+      flex: 0 0 auto;
+
+      display: block;
+
+      margin: 0;
+
+      padding: 0;
+
+      transition:
+        width .32s ease,
+        height .32s ease;
+    }
+
+
+    /* ========================================
+       PAGE FLIP
+    ======================================== */
+
     #book {
       position: relative;
+
+      display: block;
+
+      flex: 0 0 auto;
+
+      margin: 0;
+
+      padding: 0;
+
+      transition:
+        transform .32s ease;
 
       filter:
         drop-shadow(
@@ -209,13 +265,43 @@
           28px
           rgba(31,24,20,.18)
         );
-      transation: transform .35s ease;
-      }
 
-      #book.cover-centered {
-        transform: translateX(-25%);
-      }
-    
+      transform-origin:
+        left center;
+    }
+
+
+    /*
+      Remove espaçamentos externos
+      dos elementos criados pelo PageFlip.
+    */
+
+    #book > *,
+    #book canvas {
+      margin: 0 !important;
+
+      padding: 0 !important;
+    }
+
+    #book canvas {
+      display: block;
+    }
+
+
+    /*
+      Não deixa o fundo artificial
+      do livro aparecer.
+    */
+
+    #book {
+      background:
+        transparent !important;
+    }
+
+
+    /* ========================================
+       AJUDA
+    ======================================== */
 
     .hint {
       position: absolute;
@@ -230,6 +316,11 @@
 
       pointer-events: none;
     }
+
+
+    /* ========================================
+       RODAPÉ
+    ======================================== */
 
     footer {
       display: flex;
@@ -258,6 +349,29 @@
       display: none;
     }
 
+
+    /* ========================================
+       FULLSCREEN
+    ======================================== */
+
+    .app:fullscreen {
+      width: 100vw;
+      height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at top,
+          #ffffff 0%,
+          #f4f2f0 45%,
+          #ebe7e4 100%
+        );
+    }
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
     @media(max-width:720px) {
 
       .app {
@@ -268,15 +382,18 @@
       }
 
       header {
-        padding: 0 12px;
+        padding:
+          0 12px;
       }
 
       .brand strong {
-        font-size: 15px;
+        font-size:
+          15px;
       }
 
       .brand span {
-        font-size: 9px;
+        font-size:
+          9px;
       }
 
       main {
@@ -287,23 +404,29 @@
       }
 
       .hint {
-        display: none;
+        display:
+          none;
       }
 
       .desktop-label {
-        display: none;
+        display:
+          none;
       }
 
       .mobile-label {
-        display: inline;
+        display:
+          inline;
       }
 
       button {
-        height: 36px;
+        height:
+          36px;
 
-        border-radius: 10px;
+        border-radius:
+          10px;
 
-        padding: 0 10px;
+        padding:
+          0 10px;
       }
 
     }
@@ -312,9 +435,19 @@
 
 </head>
 
+
 <body>
 
-<div class="app" id="catalogApp">
+
+<div
+  class="app"
+  id="catalogApp"
+>
+
+
+  <!-- ========================================
+       CABEÇALHO
+  ========================================= -->
 
   <header>
 
@@ -329,6 +462,7 @@
       </span>
 
     </div>
+
 
     <div class="actions">
 
@@ -358,9 +492,19 @@
   </header>
 
 
+
+  <!-- ========================================
+       CATÁLOGO
+  ========================================= -->
+
   <main id="stage">
 
-    <div id="book"></div>
+    <div id="bookViewport">
+
+      <div id="book"></div>
+
+    </div>
+
 
     <div class="hint">
       Clique e arraste o canto da página para folhear.
@@ -368,6 +512,11 @@
 
   </main>
 
+
+
+  <!-- ========================================
+       CONTROLES
+  ========================================= -->
 
   <footer>
 
@@ -379,12 +528,14 @@
       ←
     </button>
 
-   <div
-  id="counter"
-  class="counter"
->
-  1 / 28
-</div>>
+
+    <div
+      id="counter"
+      class="counter"
+    >
+      1 / 28
+    </div>
+
 
     <button
       id="next"
@@ -396,74 +547,194 @@
 
   </footer>
 
+
 </div>
+
 
 
 <script>
 
+
+/* ========================================
+   PÁGINAS
+======================================== */
+
 const total = 28;
 
+
 const images = [
+
   "pagina-01.jpg",
+
   "pagina-02.jpg",
+
   "pagina-03.jpg",
+
   "pagina-04.jpg",
+
   "pagina-05.jpg",
+
   "pagina-06.jpg",
+
   "pagina-07.jpg",
+
   "pagina-08.jpg",
+
   "pagina-09.jpg",
+
   "pagina-10.jpg",
+
   "pagina-11.jpg",
+
   "pagina-12.jpg",
+
   "pagina-13.jpg",
+
   "pagina-14.jpg",
+
   "pagina-15.jpg",
+
   "pagina-16.jpg",
+
   "pagina-17.jpg",
+
   "pagina-18.jpg",
+
   "pagina-19.jpg",
+
   "pagina-20.jpg",
+
   "pagina-21.jpg",
+
   "pagina-22.jpg",
+
   "pagina-23.jpg",
+
   "pagina-24.jpg",
+
   "pagina-25.jpg",
+
   "pagina-26.jpg",
+
   "pagina-27.jpg",
+
   "pagina-28.jpg"
+
 ];
 
-const app = document.getElementById("catalogApp");
-const bookEl = document.getElementById("book");
-const stage = document.getElementById("stage");
-const counter = document.getElementById("counter");
-
-let flip = null;
-
-const PAGE_RATIO = 210 / 297;
 
 
-/* =========================
-   CALCULA TAMANHO
-========================= */
+/* ========================================
+   ELEMENTOS
+======================================== */
+
+const app =
+  document.getElementById(
+    "catalogApp"
+  );
+
+
+const stage =
+  document.getElementById(
+    "stage"
+  );
+
+
+const bookViewport =
+  document.getElementById(
+    "bookViewport"
+  );
+
+
+const bookEl =
+  document.getElementById(
+    "book"
+  );
+
+
+const counter =
+  document.getElementById(
+    "counter"
+  );
+
+
+const fullscreenBtn =
+  document.getElementById(
+    "fullscreen"
+  );
+
+
+
+/* ========================================
+   VARIÁVEIS
+======================================== */
+
+let flip =
+  null;
+
+
+let resizeTimer =
+  null;
+
+
+/*
+  Tamanho REAL de uma página.
+*/
+
+let pageWidth =
+  0;
+
+
+let pageHeight =
+  0;
+
+
+/*
+  Guarda a página atual.
+*/
+
+let currentPage =
+  0;
+
+
+/*
+  A4
+*/
+
+const PAGE_RATIO =
+  210 / 297;
+
+
+
+/* ========================================
+   TAMANHO
+======================================== */
 
 function getSize() {
+
 
   const mobile =
     window.innerWidth <= 720;
 
+
   const availableHeight =
     Math.max(
       340,
-      stage.clientHeight - 20
+      stage.clientHeight - 8
     );
+
 
   const availableWidth =
     Math.max(
       280,
-      stage.clientWidth - 30
+      stage.clientWidth - 8
     );
+
+
+  /*
+    Usa praticamente toda
+    a altura disponível.
+  */
 
   let h =
     Math.min(
@@ -471,35 +742,69 @@ function getSize() {
       790
     );
 
-  let w =
-    h * PAGE_RATIO;
 
+  let w =
+    h *
+    PAGE_RATIO;
+
+
+
+  /*
+    MOBILE
+  */
 
   if (mobile) {
 
-    if (w > availableWidth) {
+
+    if (
+      w >
+      availableWidth
+    ) {
+
 
       w =
         availableWidth;
 
+
       h =
-        w / PAGE_RATIO;
+        w /
+        PAGE_RATIO;
+
 
     }
 
-  } else {
-
-    if ((w * 2) > availableWidth) {
-
-      w =
-        availableWidth / 2;
-
-      h =
-        w / PAGE_RATIO;
-
-    }
 
   }
+
+
+  /*
+    DESKTOP
+  */
+
+  else {
+
+
+    if (
+      (w * 2) >
+      availableWidth
+    ) {
+
+
+      w =
+        availableWidth /
+        2;
+
+
+      h =
+        w /
+        PAGE_RATIO;
+
+
+    }
+
+
+  }
+
 
 
   return {
@@ -517,46 +822,231 @@ function getSize() {
 }
 
 
-/* =========================
-   CRIA O LIVRO UMA ÚNICA VEZ
-========================= */
+
+/* ========================================
+   DEFINE A JANELA VISÍVEL
+======================================== */
+
+function applyBookView(
+  index
+) {
+
+
+  currentPage =
+    Math.max(
+      0,
+      Math.min(
+        index,
+        total - 1
+      )
+    );
+
+
+  counter.textContent =
+    (currentPage + 1)
+    +
+    " / "
+    +
+    total;
+
+
+
+  /*
+    No celular o livro já trabalha
+    com uma única página.
+  */
+
+  if (
+    window.innerWidth <= 720
+  ) {
+
+
+    bookViewport.style.width =
+      pageWidth +
+      "px";
+
+
+    bookViewport.style.height =
+      pageHeight +
+      "px";
+
+
+    bookEl.style.transform =
+      "translateX(0)";
+
+
+    return;
+
+  }
+
+
+
+  /*
+    PÁGINA 1
+
+    O PageFlip coloca a capa
+    na metade direita do livro.
+
+    A janela fica com largura
+    de uma página e deslocamos
+    o livro para mostrar somente ela.
+  */
+
+  if (
+    currentPage === 0
+  ) {
+
+
+    bookViewport.style.width =
+      pageWidth +
+      "px";
+
+
+    bookViewport.style.height =
+      pageHeight +
+      "px";
+
+
+    bookEl.style.transform =
+      "translateX(-" +
+      pageWidth +
+      "px)";
+
+
+    return;
+
+  }
+
+
+
+  /*
+    ÚLTIMA PÁGINA
+
+    Ela fica sozinha no lado esquerdo.
+
+    A metade branca à direita
+    fica fora da janela.
+  */
+
+  if (
+    currentPage ===
+    total - 1
+  ) {
+
+
+    bookViewport.style.width =
+      pageWidth +
+      "px";
+
+
+    bookViewport.style.height =
+      pageHeight +
+      "px";
+
+
+    bookEl.style.transform =
+      "translateX(0)";
+
+
+    return;
+
+  }
+
+
+
+  /*
+    PÁGINAS INTERNAS
+
+    Mostra o livro inteiro:
+    esquerda + direita.
+  */
+
+  bookViewport.style.width =
+    (pageWidth * 2) +
+    "px";
+
+
+  bookViewport.style.height =
+    pageHeight +
+    "px";
+
+
+  bookEl.style.transform =
+    "translateX(0)";
+
+}
+
+
+
+/* ========================================
+   INICIA O LIVRO
+======================================== */
 
 function initBook() {
+
 
   if (
     !window.St ||
     !St.PageFlip
   ) {
 
+
     setTimeout(
       initBook,
       150
     );
 
+
     return;
 
   }
 
+
+
   const size =
     getSize();
 
-  const w =
+
+  pageWidth =
     size.w;
 
-  const h =
+
+  pageHeight =
     size.h;
 
-  const mobile =
-    size.mobile;
 
 
   bookEl.style.width =
-    mobile
-      ? w + "px"
-      : (w * 2) + "px";
+    size.mobile
+
+      ? pageWidth +
+        "px"
+
+      : (pageWidth * 2) +
+        "px";
+
 
   bookEl.style.height =
-    h + "px";
+    pageHeight +
+    "px";
+
+
+
+  /*
+    Antes mesmo do PageFlip aparecer,
+    já colocamos o viewport no tamanho
+    correto da capa.
+  */
+
+  bookViewport.style.width =
+    pageWidth +
+    "px";
+
+
+  bookViewport.style.height =
+    pageHeight +
+    "px";
+
 
 
   flip =
@@ -564,12 +1054,16 @@ function initBook() {
       bookEl,
       {
 
-        width: w,
+        width:
+          pageWidth,
 
-        height: h,
+        height:
+          pageHeight,
+
 
         size:
           "fixed",
+
 
         minWidth:
           240,
@@ -577,38 +1071,49 @@ function initBook() {
         maxWidth:
           900,
 
+
         minHeight:
           340,
 
         maxHeight:
           1273,
 
+
         showCover:
           true,
 
+
         usePortrait:
-          mobile,
+          size.mobile,
+
 
         mobileScrollSupport:
           true,
 
+
         drawShadow:
           true,
+
 
         maxShadowOpacity:
           .35,
 
+
         flippingTime:
           650,
+
 
         useMouseEvents:
           true,
 
+
         clickEventForward:
           true,
 
+
         showPageCorners:
           true,
+
 
         startPage:
           0
@@ -617,81 +1122,57 @@ function initBook() {
     );
 
 
+
   flip.loadFromImages(
     images
   );
 
 
+
+  /*
+    Quando a página termina
+    de virar.
+  */
+
   flip.on(
     "flip",
     function(e) {
 
-      updateCounter(
+
+      applyBookView(
         e.data
       );
+
 
     }
   );
 
 
-  updateCounter(
+
+  /*
+    Inicializa a capa.
+  */
+
+  applyBookView(
     0
   );
 
 }
 
 
-/* =========================
-   CONTADOR
-========================= */
 
-function updateCounter(index) {
-
-  counter.textContent =
-    (index + 1)
-    +
-    " / "
-    +
-    total;
-
-
-  /*
-    Página 1:
-    centraliza a capa.
-
-    Demais páginas:
-    volta o livro para a posição normal.
-  */
-
-  if (
-    index === 0 &&
-    window.innerWidth > 720
-  ) {
-
-    bookEl.classList.add(
-      "cover-centered"
-    );
-
-  } else {
-
-    bookEl.classList.remove(
-      "cover-centered"
-    );
-
-  }
-
-}
-
-
-/* =========================
+/* ========================================
    NAVEGAÇÃO
-========================= */
+======================================== */
 
 document
-  .getElementById("prev")
+  .getElementById(
+    "prev"
+  )
   .addEventListener(
     "click",
     function() {
+
 
       if (flip) {
 
@@ -699,15 +1180,19 @@ document
 
       }
 
+
     }
   );
 
 
 document
-  .getElementById("next")
+  .getElementById(
+    "next"
+  )
   .addEventListener(
     "click",
     function() {
+
 
       if (flip) {
 
@@ -715,188 +1200,354 @@ document
 
       }
 
+
     }
   );
 
+
+
+/* ========================================
+   TECLADO
+======================================== */
 
 document.addEventListener(
   "keydown",
   function(e) {
 
+
     if (!flip) {
       return;
     }
 
-    if (e.key === "ArrowLeft") {
+
+    if (
+      e.key ===
+      "ArrowLeft"
+    ) {
+
 
       flip.flipPrev();
 
+
     }
 
-    if (e.key === "ArrowRight") {
+
+    if (
+      e.key ===
+      "ArrowRight"
+    ) {
+
 
       flip.flipNext();
 
+
     }
+
 
   }
 );
 
 
-/* =========================
-   TELA CHEIA
-========================= */
 
-document
-  .getElementById("fullscreen")
+/* ========================================
+   TELA CHEIA
+======================================== */
+
+fullscreenBtn
   .addEventListener(
     "click",
     async function() {
 
-      try {
 
-        if (!document.fullscreenElement) {
+      if (flip) {
 
-          /*
-            Agora entra em tela cheia
-            SOMENTE no catálogo.
-          */
 
-          await app.requestFullscreen();
+        currentPage =
+          flip
+            .getCurrentPageIndex();
 
-        } else {
-
-          await document.exitFullscreen();
-
-        }
 
       }
 
+
+      try {
+
+
+        if (
+          !document
+            .fullscreenElement
+        ) {
+
+
+          await app
+            .requestFullscreen();
+
+
+        }
+
+
+        else {
+
+
+          await document
+            .exitFullscreen();
+
+
+        }
+
+
+      }
+
+
       catch(e) {
+
 
         console.error(
           "Erro ao abrir tela cheia:",
           e
         );
 
+
       }
+
 
     }
   );
 
 
-/* =========================
-   QUANDO ENTRA/SAI DO FULLSCREEN
-========================= */
+
+/* ========================================
+   RECALCULA DEPOIS DO FULLSCREEN
+======================================== */
 
 document.addEventListener(
   "fullscreenchange",
   function() {
 
-    /*
-      NÃO destruímos mais o livro.
-
-      Esperamos o navegador definir
-      o novo tamanho e apenas pedimos
-      para o PageFlip recalcular a área.
-    */
-
-    setTimeout(
-      function() {
-
-        if (!flip) {
-          return;
-        }
-
-        const size =
-          getSize();
-
-        const w =
-          size.w;
-
-        const h =
-          size.h;
-
-        const mobile =
-          size.mobile;
-
-
-        /*
-          Atualiza o tamanho externo.
-        */
-
-        bookEl.style.width =
-          mobile
-            ? w + "px"
-            : (w * 2) + "px";
-
-        bookEl.style.height =
-          h + "px";
-
-
-        /*
-          Método oficial da biblioteca:
-          recalcula a área e mantém
-          as páginas atuais.
-        */
-
-        flip.update();
-
-      },
-      200
-    );
-
-  }
-);
-
-
-/* =========================
-   RESIZE NORMAL
-========================= */
-
-let resizeTimer = null;
-
-window.addEventListener(
-  "resize",
-  function() {
 
     clearTimeout(
       resizeTimer
     );
 
+
+    /*
+      O navegador precisa terminar
+      a transição antes de medirmos
+      a nova área.
+    */
+
     resizeTimer =
       setTimeout(
         function() {
+
 
           if (!flip) {
             return;
           }
 
-          /*
-            Apenas recalcula.
 
-            Não destrói.
-            Não recria.
-            Não some com as imagens.
+          const size =
+            getSize();
+
+
+
+          /*
+            Atualiza as variáveis também.
+
+            Esta parte estava faltando
+            no código anterior.
           */
 
-          flip.update();
+          pageWidth =
+            size.w;
+
+
+          pageHeight =
+            size.h;
+
+
+
+          /*
+            Atualiza a caixa externa.
+          */
+
+          bookEl.style.width =
+            size.mobile
+
+              ? pageWidth +
+                "px"
+
+              : (pageWidth * 2) +
+                "px";
+
+
+          bookEl.style.height =
+            pageHeight +
+            "px";
+
+
+
+          /*
+            Pede para o PageFlip
+            recalcular o canvas.
+          */
+
+          if (
+            typeof flip.update ===
+            "function"
+          ) {
+
+
+            flip.update();
+
+
+          }
+
+
+
+          /*
+            Espera o PageFlip recalcular
+            e aplica novamente o recorte.
+          */
+
+          requestAnimationFrame(
+            function() {
+
+
+              requestAnimationFrame(
+                function() {
+
+
+                  currentPage =
+                    flip
+                      .getCurrentPageIndex();
+
+
+                  applyBookView(
+                    currentPage
+                  );
+
+
+                }
+              );
+
+
+            }
+          );
+
 
         },
         250
       );
 
+
   }
 );
 
 
-/* =========================
+
+/* ========================================
+   RESIZE
+======================================== */
+
+window.addEventListener(
+  "resize",
+  function() {
+
+
+    clearTimeout(
+      resizeTimer
+    );
+
+
+    resizeTimer =
+      setTimeout(
+        function() {
+
+
+          if (!flip) {
+            return;
+          }
+
+
+          const size =
+            getSize();
+
+
+
+          pageWidth =
+            size.w;
+
+
+          pageHeight =
+            size.h;
+
+
+
+          bookEl.style.width =
+            size.mobile
+
+              ? pageWidth +
+                "px"
+
+              : (pageWidth * 2) +
+                "px";
+
+
+          bookEl.style.height =
+            pageHeight +
+            "px";
+
+
+          if (
+            typeof flip.update ===
+            "function"
+          ) {
+
+
+            flip.update();
+
+
+          }
+
+
+          currentPage =
+            flip
+              .getCurrentPageIndex();
+
+
+          requestAnimationFrame(
+            function() {
+
+
+              applyBookView(
+                currentPage
+              );
+
+
+            }
+          );
+
+
+        },
+        300
+      );
+
+
+  }
+);
+
+
+
+/* ========================================
    INICIA
-========================= */
+======================================== */
 
 initBook();
 
+
 </script>
+
 
 </body>
 
