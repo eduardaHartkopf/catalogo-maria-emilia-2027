@@ -3,368 +3,369 @@
 
 <head>
 
-<meta charset="utf-8">
+  <meta charset="utf-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, viewport-fit=cover"
->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
 
-<title>Catálogo Maria Emília - Inverno 2027</title>
+  <title>Catálogo Maria Emília - Inverno 2027</title>
 
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+  <meta
+    name="description"
+    content="Catálogo Inverno 2027 Maria Emília"
+  >
 
-<style>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 
-:root {
-  --bg: #f3f1ef;
-  --ink: #2c2928;
-  --wine: #8e4b5a;
-  --line: #ded8d4;
-}
+  <style>
 
-* {
-  box-sizing: border-box;
-}
+    :root {
+      --bg: #f3f1ef;
+      --ink: #2c2928;
+      --wine: #8e4b5a;
+      --line: #ded8d4;
+    }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-body {
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
 
-  color: var(--ink);
+      background:
+        radial-gradient(
+          circle at top,
+          #ffffff 0%,
+          #f4f2f0 45%,
+          #ebe7e4 100%
+        );
 
-  background:
-    radial-gradient(
-      circle at top,
-      #ffffff 0%,
-      #f4f2f0 45%,
-      #ebe7e4 100%
-    );
+      overflow: hidden;
+    }
 
-  overflow: hidden;
-}
 
+    /* =========================
+       APP
+    ========================= */
 
-/* APP */
+    .app {
+      width: 100%;
+      height: 100%;
 
-.app {
+      display: grid;
 
-  width: 100%;
-  height: 100%;
+      grid-template-rows:
+        64px
+        minmax(0, 1fr)
+        54px;
+    }
 
-  display: grid;
 
-  grid-template-rows:
-    64px
-    minmax(0, 1fr)
-    54px;
+    /* =========================
+       TOPO
+    ========================= */
 
-}
+    header {
+      display: flex;
 
+      align-items: center;
 
-/* TOPO */
+      justify-content: space-between;
 
-header {
+      padding:
+        0 20px;
 
-  display: flex;
+      background:
+        rgba(255,255,255,.94);
 
-  align-items: center;
+      border-bottom:
+        1px solid var(--line);
 
-  justify-content: space-between;
+      position: relative;
 
-  padding:
-    0 20px;
+      z-index: 50;
+    }
 
-  background:
-    rgba(255,255,255,.94);
 
-  border-bottom:
-    1px solid var(--line);
+    .brand {
+      display: flex;
 
-  position: relative;
+      flex-direction: column;
 
-  z-index: 50;
+      line-height: 1.05;
+    }
 
-}
 
+    .brand strong {
+      font-size: 17px;
 
-.brand {
+      letter-spacing: .04em;
+    }
 
-  display: flex;
 
-  flex-direction: column;
+    .brand span {
+      margin-top: 5px;
 
-  line-height: 1.05;
+      font-size: 11px;
 
-}
+      text-transform: uppercase;
 
+      letter-spacing: .18em;
 
-.brand strong {
+      opacity: .62;
+    }
 
-  font-size: 17px;
 
-  letter-spacing: .04em;
+    .actions {
+      display: flex;
 
-}
+      align-items: center;
 
+      gap: 8px;
+    }
 
-.brand span {
 
-  margin-top: 5px;
+    button {
+      appearance: none;
 
-  font-size: 11px;
+      height: 38px;
 
-  text-transform: uppercase;
+      min-width: 38px;
 
-  letter-spacing: .18em;
+      border:
+        1px solid var(--line);
 
-  opacity: .62;
+      border-radius: 12px;
 
-}
+      padding:
+        0 13px;
 
+      background: #fff;
 
-.actions {
+      color: var(--ink);
 
-  display: flex;
+      cursor: pointer;
 
-  align-items: center;
+      display: inline-flex;
 
-  gap: 8px;
+      align-items: center;
 
-}
+      justify-content: center;
 
+      gap: 7px;
 
-button {
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-  appearance: none;
+      font-size: 13px;
 
-  height: 38px;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
 
-  border:
-    1px solid var(--line);
 
-  border-radius: 12px;
+    button:hover {
+      transform:
+        translateY(-1px);
 
-  padding:
-    0 13px;
+      border-color:
+        #c9c0bb;
 
-  background: #fff;
+      box-shadow:
+        0 4px 14px
+        rgba(0,0,0,.06);
+    }
 
-  color: var(--ink);
 
-  cursor: pointer;
+    .primary {
+      background:
+        var(--wine);
 
-  display: inline-flex;
+      border-color:
+        var(--wine);
 
-  align-items: center;
+      color:
+        #ffffff;
+    }
 
-  justify-content: center;
 
-  gap: 7px;
+    /* =========================
+       PALCO
+    ========================= */
 
-  font-size: 13px;
+    main {
+      width: 100%;
 
-}
+      min-height: 0;
 
+      display: flex;
 
-button:hover {
+      justify-content: center;
 
-  border-color: #c9c0bb;
+      align-items: center;
 
-  box-shadow:
-    0 4px 14px
-    rgba(0,0,0,.06);
+      position: relative;
 
-}
+      padding:
+        14px
+        20px
+        8px;
 
+      overflow: hidden;
+    }
 
-.primary {
 
-  background:
-    var(--wine);
+    /* =========================
+       LIVRO
+    ========================= */
 
-  border-color:
-    var(--wine);
+    #book {
+      position: relative;
 
-  color:
-    #ffffff;
+      filter:
+        drop-shadow(
+          0
+          18px
+          28px
+          rgba(31,24,20,.18)
+        );
+    }
 
-}
 
+    /* =========================
+       AJUDA
+    ========================= */
 
-/* PALCO */
+    .hint {
+      position: absolute;
 
-main {
+      left: 18px;
 
-  width: 100%;
+      bottom: 8px;
 
-  min-height: 0;
+      font-size: 11px;
 
-  display: flex;
+      opacity: .55;
 
-  justify-content: center;
+      pointer-events: none;
+    }
 
-  align-items: center;
 
-  position: relative;
+    /* =========================
+       RODAPÉ
+    ========================= */
 
-  padding:
-    14px
-    20px
-    8px;
+    footer {
+      display: flex;
 
-  overflow: hidden;
+      align-items: center;
 
-}
+      justify-content: center;
 
+      gap: 14px;
 
-/* LIVRO */
+      padding:
+        0 16px;
+    }
 
-#book {
 
-  filter:
-    drop-shadow(
-      0
-      18px
-      28px
-      rgba(31,24,20,.18)
-    );
+    .counter {
+      min-width: 88px;
 
-}
+      text-align: center;
 
+      font-size: 13px;
 
-/* AJUDA */
+      font-variant-numeric:
+        tabular-nums;
+    }
 
-.hint {
 
-  position: absolute;
+    /* =========================
+       MOBILE
+    ========================= */
 
-  left: 18px;
+    .mobile-label {
+      display: none;
+    }
 
-  bottom: 8px;
 
-  font-size: 11px;
+    @media(max-width:720px) {
 
-  opacity: .55;
+      .app {
+        grid-template-rows:
+          58px
+          minmax(0, 1fr)
+          50px;
+      }
 
-  pointer-events: none;
 
-}
+      header {
+        padding:
+          0 12px;
+      }
 
 
-/* RODAPÉ */
+      .brand strong {
+        font-size: 15px;
+      }
 
-footer {
 
-  display: flex;
+      .brand span {
+        font-size: 9px;
+      }
 
-  align-items: center;
 
-  justify-content: center;
+      main {
+        padding:
+          8px
+          4px
+          4px;
+      }
 
-  gap: 14px;
 
-}
+      .hint {
+        display: none;
+      }
 
 
-.counter {
+      .desktop-label {
+        display: none;
+      }
 
-  min-width: 88px;
 
-  text-align: center;
+      .mobile-label {
+        display: inline;
+      }
 
-  font-size: 13px;
 
-  font-variant-numeric:
-    tabular-nums;
+      button {
+        height: 36px;
 
-}
+        border-radius: 10px;
 
+        padding:
+          0 10px;
+      }
 
-/* MOBILE */
+    }
 
-.mobile-label {
-  display: none;
-}
-
-
-@media(max-width:720px) {
-
-  .app {
-
-    grid-template-rows:
-      58px
-      minmax(0, 1fr)
-      50px;
-
-  }
-
-
-  header {
-
-    padding:
-      0 12px;
-
-  }
-
-
-  .brand strong {
-
-    font-size: 15px;
-
-  }
-
-
-  .brand span {
-
-    font-size: 9px;
-
-  }
-
-
-  main {
-
-    padding:
-      8px
-      4px
-      4px;
-
-  }
-
-
-  .hint {
-
-    display: none;
-
-  }
-
-
-  .desktop-label {
-
-    display: none;
-
-  }
-
-
-  .mobile-label {
-
-    display: inline;
-
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
@@ -375,85 +376,100 @@ footer {
 <div class="app">
 
 
-<header>
+  <!-- =========================
+       CABEÇALHO
+  ========================== -->
+
+  <header>
 
 
-  <div class="brand">
+    <div class="brand">
 
-    <strong>
-      Maria Emília
-    </strong>
-
-    <span>
-      Inverno 2027
-    </span>
-
-  </div>
-
-
-  <div class="actions">
-
-    <button
-      id="fullscreen"
-      class="primary"
-      type="button"
-    >
+      <strong>
+        Maria Emília
+      </strong>
 
       <span>
-        ⛶
+        Inverno 2027
       </span>
 
-      <span class="desktop-label">
-        Tela cheia
-      </span>
+    </div>
 
+
+    <div class="actions">
+
+      <button
+        id="fullscreen"
+        class="primary"
+        type="button"
+        title="Tela cheia"
+      >
+
+        <span aria-hidden="true">
+          ⛶
+        </span>
+
+        <span class="desktop-label">
+          Tela cheia
+        </span>
+
+        <span class="mobile-label">
+          Tela cheia
+        </span>
+
+      </button>
+
+    </div>
+
+
+  </header>
+
+
+  <!-- =========================
+       LIVRO
+  ========================== -->
+
+  <main id="stage">
+
+    <div id="book"></div>
+
+    <div class="hint">
+      Clique e arraste o canto da página para folhear.
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       NAVEGAÇÃO
+  ========================== -->
+
+  <footer>
+
+    <button
+      id="prev"
+      type="button"
+      aria-label="Página anterior"
+    >
+      ←
     </button>
 
-  </div>
+    <div
+      id="counter"
+      class="counter"
+    >
+      1 / 3
+    </div>
 
+    <button
+      id="next"
+      type="button"
+      aria-label="Próxima página"
+    >
+      →
+    </button>
 
-</header>
-
-
-
-<main id="stage">
-
-  <div id="book"></div>
-
-  <div class="hint">
-    Clique e arraste o canto da página para folhear.
-  </div>
-
-</main>
-
-
-
-<footer>
-
-  <button
-    id="prev"
-    type="button"
-    aria-label="Página anterior"
-  >
-    ←
-  </button>
-
-  <div
-    id="counter"
-    class="counter"
-  >
-    1 / 3
-  </div>
-
-  <button
-    id="next"
-    type="button"
-    aria-label="Próxima página"
-  >
-    →
-  </button>
-
-</footer>
+  </footer>
 
 
 </div>
@@ -462,508 +478,868 @@ footer {
 
 <script>
 
-const total = 3;
+  /* =========================
+     CONFIGURAÇÃO
+  ========================= */
+
+  const total = 3;
 
 
-/*
-  COMO O INDEX.HTML ESTÁ
-  NA MESMA PASTA DAS IMAGENS,
-  NÃO PRECISAMOS DE URLs GRANDES.
-*/
+  const images = [
 
-const images = [
+    "pagina-01.jpg",
 
-  "pagina-01.jpg",
+    "pagina-02.jpg",
 
-  "pagina-02.jpg",
+    "pagina-03.jpg"
 
-  "pagina-03.jpg"
-
-];
+  ];
 
 
-const bookEl =
-  document.getElementById(
-    "book"
-  );
-
-
-const stage =
-  document.getElementById(
-    "stage"
-  );
-
-
-let flip = null;
-
-let resizeTimer = null;
-
-
-const PAGE_RATIO =
-  210 / 297;
-
-
-
-function getSize() {
-
-
-  const mobile =
-    window.innerWidth <= 720;
-
-
-  /*
-    ALTURA REAL DISPONÍVEL
-    ENTRE O TOPO E O RODAPÉ
-    DO PRÓPRIO CATÁLOGO.
-  */
-
-  const availableHeight =
-    stage.clientHeight - 20;
-
-
-  const availableWidth =
-    stage.clientWidth - 30;
-
-
-  let h =
-    Math.min(
-      availableHeight,
-      790
+  const bookEl =
+    document.getElementById(
+      "book"
     );
 
 
-  let w =
-    h *
-    PAGE_RATIO;
+  const stage =
+    document.getElementById(
+      "stage"
+    );
+
+
+  const fullscreenBtn =
+    document.getElementById(
+      "fullscreen"
+    );
+
+
+  const counter =
+    document.getElementById(
+      "counter"
+    );
+
+
+  let flip = null;
+
+
+  let resizeTimer = null;
 
 
   /*
-    CELULAR:
-    UMA PÁGINA
+    Enquanto o navegador estiver
+    entrando ou saindo de tela cheia,
+    o resize normal fica bloqueado.
   */
 
-  if (mobile) {
+  let fullscreenTransition =
+    false;
 
 
-    if (
-      w >
-      availableWidth
-    ) {
+  /*
+    Guarda a página atual.
+  */
+
+  let currentPage =
+    0;
 
 
-      w =
-        availableWidth;
+  /*
+    Proporção A4:
+    210 x 297 mm
+  */
+
+  const PAGE_RATIO =
+    210 / 297;
 
 
-      h =
-        w /
-        PAGE_RATIO;
+
+  /* =========================
+     CALCULA TAMANHO
+  ========================= */
+
+  function getSize() {
+
+
+    const mobile =
+      window.innerWidth <= 720;
+
+
+    /*
+      Mede o espaço REAL disponível
+      dentro da página do catálogo.
+    */
+
+    const availableHeight =
+      Math.max(
+        340,
+        stage.clientHeight - 20
+      );
+
+
+    const availableWidth =
+      Math.max(
+        280,
+        stage.clientWidth - 30
+      );
+
+
+    let h =
+      Math.min(
+        availableHeight,
+        790
+      );
+
+
+    let w =
+      h *
+      PAGE_RATIO;
+
+
+
+    /*
+      CELULAR:
+      uma página.
+    */
+
+    if (mobile) {
+
+
+      if (
+        w >
+        availableWidth
+      ) {
+
+
+        w =
+          availableWidth;
+
+
+        h =
+          w /
+          PAGE_RATIO;
+
+
+      }
 
 
     }
 
 
-  }
+
+    /*
+      DESKTOP:
+      duas páginas.
+    */
+
+    else {
 
 
-  /*
-    DESKTOP:
-    DUAS PÁGINAS
-  */
-
-  else {
+      if (
+        (w * 2) >
+        availableWidth
+      ) {
 
 
-    const spreadWidth =
-      w * 2;
+        w =
+          availableWidth /
+          2;
 
 
-    if (
-      spreadWidth >
-      availableWidth
-    ) {
+        h =
+          w /
+          PAGE_RATIO;
 
 
-      w =
-        availableWidth /
-        2;
-
-
-      h =
-        w /
-        PAGE_RATIO;
+      }
 
 
     }
 
 
+
+    return {
+
+      w:
+        Math.floor(w),
+
+      h:
+        Math.floor(h),
+
+      mobile
+
+    };
+
   }
 
 
-  return {
 
-    w:
-      Math.floor(w),
+  /* =========================
+     MONTA O LIVRO
+  ========================= */
 
-    h:
-      Math.floor(h),
-
-    mobile
-
-  };
-
-}
-
-
-
-function buildBook() {
-
-
-  if (
-    !window.St ||
-    !St.PageFlip
+  function buildBook(
+    startPage =
+      currentPage
   ) {
 
 
-    setTimeout(
-      buildBook,
-      150
-    );
+    /*
+      Espera a biblioteca carregar.
+    */
+
+    if (
+      !window.St
+      ||
+      !St.PageFlip
+    ) {
 
 
-    return;
+      setTimeout(
+        function() {
 
-  }
+          buildBook(
+            startPage
+          );
 
-
-  if (flip) {
-
-
-    try {
-
-      flip.destroy();
-
-    }
-
-    catch(e) {}
-
-
-    bookEl.innerHTML =
-      "";
-
-
-  }
-
-
-  const {
-    w,
-    h,
-    mobile
-  } =
-  getSize();
-
-
-
-  /*
-    PAGE FLIP ORIGINAL
-  */
-
-  flip =
-    new St.PageFlip(
-      bookEl,
-      {
-
-        width:
-          w,
-
-        height:
-          h,
-
-
-        size:
-          "fixed",
-
-
-        minWidth:
-          240,
-
-        maxWidth:
-          900,
-
-
-        minHeight:
-          340,
-
-        maxHeight:
-          1273,
-
-
-        /*
-          CAPA SOZINHA
-        */
-
-        showCover:
-          true,
-
-
-        /*
-          MOBILE =
-          UMA PÁGINA
-        */
-
-        usePortrait:
-          mobile,
-
-
-        mobileScrollSupport:
-          true,
-
-
-        /*
-          SOMBRA REAL DA
-          VIRADA
-        */
-
-        drawShadow:
-          true,
-
-
-        maxShadowOpacity:
-          .35,
-
-
-        /*
-          ANIMAÇÃO
-        */
-
-        flippingTime:
-          650,
-
-
-        /*
-          MOUSE
-        */
-
-        useMouseEvents:
-          true,
-
-
-        clickEventForward:
-          true,
-
-
-        /*
-          COMEÇA NA CAPA
-        */
-
-        startPage:
-          0
-
-      }
-    );
-
-
-
-  /*
-    IMPORTANTE:
-    USA O EFEITO DE PÁGINA
-    ORIGINAL QUE VOCÊ GOSTOU.
-  */
-
-  flip.loadFromImages(
-    images
-  );
-
-
-
-  flip.on(
-    "flip",
-    function(e) {
-
-      updateCounter(
-        e.data
+        },
+        150
       );
 
-    }
-  );
 
-
-  updateCounter(
-    0
-  );
-
-}
-
-
-
-function updateCounter(index) {
-
-
-  document
-    .getElementById(
-      "counter"
-    )
-    .textContent =
-
-      (index + 1)
-      +
-      " / "
-      +
-      total;
-
-}
-
-
-
-document
-  .getElementById(
-    "prev"
-  )
-  .addEventListener(
-    "click",
-    function() {
-
-      if (flip) {
-
-        flip.flipPrev();
-
-      }
+      return;
 
     }
-  );
 
 
 
-document
-  .getElementById(
-    "next"
-  )
-  .addEventListener(
-    "click",
-    function() {
+    /*
+      Garante uma página válida.
+    */
 
-      if (flip) {
-
-        flip.flipNext();
-
-      }
-
-    }
-  );
+    startPage =
+      Math.max(
+        0,
+        Math.min(
+          startPage,
+          total - 1
+        )
+      );
 
 
 
-document
-  .getElementById(
-    "fullscreen"
-  )
-  .addEventListener(
-    "click",
-    async function() {
+    /*
+      Remove o PageFlip anterior.
+    */
+
+    if (flip) {
 
 
       try {
 
-
-        if (
-          !document
-            .fullscreenElement
-        ) {
-
-
-          await document
-            .documentElement
-            .requestFullscreen();
-
-
-        }
-
-
-        else {
-
-
-          await document
-            .exitFullscreen();
-
-
-        }
-
+        flip.destroy();
 
       }
 
       catch(e) {}
 
 
-    }
-  );
+      flip = null;
 
 
-
-document
-  .addEventListener(
-    "keydown",
-    function(e) {
-
-
-      if (!flip) {
-
-        return;
-
-      }
-
-
-      if (
-        e.key ===
-        "ArrowLeft"
-      ) {
-
-        flip.flipPrev();
-
-      }
-
-
-      if (
-        e.key ===
-        "ArrowRight"
-      ) {
-
-        flip.flipNext();
-
-      }
+      bookEl.innerHTML =
+        "";
 
 
     }
-  );
 
 
 
-window
-  .addEventListener(
-    "resize",
-    function() {
+    const size =
+      getSize();
 
 
-      clearTimeout(
-        resizeTimer
+    const w =
+      size.w;
+
+
+    const h =
+      size.h;
+
+
+    const mobile =
+      size.mobile;
+
+
+
+    /*
+      Dimensão explícita do livro.
+    */
+
+    bookEl.style.width =
+
+      mobile
+
+        ? w + "px"
+
+        : (w * 2) +
+          "px";
+
+
+    bookEl.style.height =
+      h + "px";
+
+
+
+    /*
+      Cria o PageFlip.
+    */
+
+    flip =
+      new St.PageFlip(
+        bookEl,
+        {
+
+          width:
+            w,
+
+          height:
+            h,
+
+
+          size:
+            "fixed",
+
+
+          minWidth:
+            240,
+
+          maxWidth:
+            900,
+
+
+          minHeight:
+            340,
+
+          maxHeight:
+            1273,
+
+
+          /*
+            Capa sozinha.
+          */
+
+          showCover:
+            true,
+
+
+          /*
+            Uma página no celular.
+          */
+
+          usePortrait:
+            mobile,
+
+
+          mobileScrollSupport:
+            true,
+
+
+          /*
+            Efeito de sombra da folha.
+          */
+
+          drawShadow:
+            true,
+
+
+          maxShadowOpacity:
+            .35,
+
+
+          /*
+            Velocidade da animação.
+          */
+
+          flippingTime:
+            650,
+
+
+          /*
+            Interação.
+          */
+
+          useMouseEvents:
+            true,
+
+
+          clickEventForward:
+            true,
+
+
+          /*
+            Mantém a página atual
+            depois de resize/fullscreen.
+          */
+
+          startPage:
+            startPage
+
+        }
       );
 
 
-      resizeTimer =
-        setTimeout(
-          buildBook,
-          250
+
+    /*
+      Usa o efeito original
+      que ficou bom.
+    */
+
+    flip.loadFromImages(
+      images
+    );
+
+
+
+    /*
+      Quando vira uma página.
+    */
+
+    flip.on(
+      "flip",
+      function(e) {
+
+
+        currentPage =
+          e.data;
+
+
+        updateCounter(
+          currentPage
         );
 
 
-    }
+      }
+    );
+
+
+
+    /*
+      Quando muda orientação.
+    */
+
+    flip.on(
+      "changeOrientation",
+      function() {
+
+
+        if (flip) {
+
+
+          currentPage =
+            flip
+              .getCurrentPageIndex();
+
+
+          updateCounter(
+            currentPage
+          );
+
+
+        }
+
+
+      }
+    );
+
+
+
+    currentPage =
+      startPage;
+
+
+    updateCounter(
+      currentPage
+    );
+
+  }
+
+
+
+  /* =========================
+     CONTADOR
+  ========================= */
+
+  function updateCounter(
+    index
+  ) {
+
+
+    counter.textContent =
+
+      (index + 1)
+
+      +
+
+      " / "
+
+      +
+
+      total;
+
+
+  }
+
+
+
+  /* =========================
+     NAVEGAÇÃO
+  ========================= */
+
+  document
+    .getElementById(
+      "prev"
+    )
+    .addEventListener(
+      "click",
+      function() {
+
+
+        if (flip) {
+
+          flip.flipPrev();
+
+        }
+
+
+      }
+    );
+
+
+
+  document
+    .getElementById(
+      "next"
+    )
+    .addEventListener(
+      "click",
+      function() {
+
+
+        if (flip) {
+
+          flip.flipNext();
+
+        }
+
+
+      }
+    );
+
+
+
+  /* =========================
+     TECLADO
+  ========================= */
+
+  document
+    .addEventListener(
+      "keydown",
+      function(e) {
+
+
+        if (!flip) {
+
+          return;
+
+        }
+
+
+        if (
+          e.key ===
+          "ArrowLeft"
+        ) {
+
+
+          flip.flipPrev();
+
+
+        }
+
+
+        if (
+          e.key ===
+          "ArrowRight"
+        ) {
+
+
+          flip.flipNext();
+
+
+        }
+
+
+      }
+    );
+
+
+
+  /* =========================
+     TELA CHEIA
+  ========================= */
+
+  fullscreenBtn
+    .addEventListener(
+      "click",
+      async function() {
+
+
+        /*
+          Guarda a página atual
+          antes do navegador mudar
+          o tamanho da tela.
+        */
+
+        if (flip) {
+
+
+          currentPage =
+            flip
+              .getCurrentPageIndex();
+
+
+        }
+
+
+
+        /*
+          Bloqueia os resizes
+          intermediários.
+        */
+
+        fullscreenTransition =
+          true;
+
+
+
+        try {
+
+
+          if (
+            !document
+              .fullscreenElement
+          ) {
+
+
+            /*
+              Entra em tela cheia.
+            */
+
+            await document
+              .documentElement
+              .requestFullscreen();
+
+
+          }
+
+
+          else {
+
+
+            /*
+              Sai da tela cheia.
+            */
+
+            await document
+              .exitFullscreen();
+
+
+          }
+
+
+        }
+
+
+        catch(e) {
+
+
+          fullscreenTransition =
+            false;
+
+
+        }
+
+
+      }
+    );
+
+
+
+  /* =========================
+     FULLSCREEN CHANGE
+  ========================= */
+
+  /*
+    Esta é a correção principal.
+
+    Só recriamos o livro DEPOIS
+    que o navegador terminou de
+    entrar ou sair da tela cheia.
+  */
+
+  document
+    .addEventListener(
+      "fullscreenchange",
+      function() {
+
+
+        fullscreenTransition =
+          true;
+
+
+        clearTimeout(
+          resizeTimer
+        );
+
+
+
+        /*
+          Espera o navegador finalizar
+          o cálculo da nova área.
+        */
+
+        setTimeout(
+          function() {
+
+
+            requestAnimationFrame(
+              function() {
+
+
+                requestAnimationFrame(
+                  function() {
+
+
+                    buildBook(
+                      currentPage
+                    );
+
+
+
+                    /*
+                      Depois que o livro
+                      está pronto novamente,
+                      liberamos resize normal.
+                    */
+
+                    setTimeout(
+                      function() {
+
+
+                        fullscreenTransition =
+                          false;
+
+
+                      },
+                      250
+                    );
+
+
+                  }
+                );
+
+
+              }
+            );
+
+
+          },
+          180
+        );
+
+
+      }
+    );
+
+
+
+  /* =========================
+     RESIZE NORMAL
+  ========================= */
+
+  window
+    .addEventListener(
+      "resize",
+      function() {
+
+
+        /*
+          Ignora os vários resizes
+          que acontecem durante
+          fullscreen.
+        */
+
+        if (
+          fullscreenTransition
+        ) {
+
+
+          return;
+
+
+        }
+
+
+
+        clearTimeout(
+          resizeTimer
+        );
+
+
+
+        resizeTimer =
+          setTimeout(
+            function() {
+
+
+              if (flip) {
+
+
+                currentPage =
+                  flip
+                    .getCurrentPageIndex();
+
+
+              }
+
+
+
+              buildBook(
+                currentPage
+              );
+
+
+            },
+            300
+          );
+
+
+      }
+    );
+
+
+
+  /* =========================
+     INICIA
+  ========================= */
+
+  buildBook(
+    0
   );
-
-
-
-buildBook();
 
 </script>
 
 
 </body>
+
 </html>
