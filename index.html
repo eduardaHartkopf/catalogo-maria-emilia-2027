@@ -209,7 +209,13 @@
           28px
           rgba(31,24,20,.18)
         );
-    }
+      transation: transform .35s ease;
+      }
+
+      #book.cover-centered {
+        transform: translateX(-25%);
+      }
+    
 
     .hint {
       position: absolute;
@@ -647,6 +653,32 @@ function updateCounter(index) {
     " / "
     +
     total;
+
+
+  /*
+    Página 1:
+    centraliza a capa.
+
+    Demais páginas:
+    volta o livro para a posição normal.
+  */
+
+  if (
+    index === 0 &&
+    window.innerWidth > 720
+  ) {
+
+    bookEl.classList.add(
+      "cover-centered"
+    );
+
+  } else {
+
+    bookEl.classList.remove(
+      "cover-centered"
+    );
+
+  }
 
 }
 
