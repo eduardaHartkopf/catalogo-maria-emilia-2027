@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover"
+>
+
+<title>Catálogo Maria Emília - Inverno 2027</title>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+<style>
+
+:root {
+  --bg: #f3f1ef;
+  --ink: #2c2928;
+  --wine: #8e4b5a;
+  --line: #ded8d4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  color: var(--ink);
+
+  background:
+    radial-gradient(
+      circle at top,
+      #ffffff 0%,
+      #f4f2f0 45%,
+      #ebe7e4 100%
+    );
+
+  overflow: hidden;
+}
+
+
+/* APP */
+
+.app {
+
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+
+  grid-template-rows:
+    64px
+    minmax(0, 1fr)
+    54px;
+
+}
+
+
+/* TOPO */
+
+header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding:
+    0 20px;
+
+  background:
+    rgba(255,255,255,.94);
+
+  border-bottom:
+    1px solid var(--line);
+
+  position: relative;
+
+  z-index: 50;
+
+}
+
+
+.brand {
+
+  display: flex;
+
+  flex-direction: column;
+
+  line-height: 1.05;
+
+}
+
+
+.brand strong {
+
+  font-size: 17px;
+
+  letter-spacing: .04em;
+
+}
+
+
+.brand span {
+
+  margin-top: 5px;
+
+  font-size: 11px;
+
+  text-transform: uppercase;
+
+  letter-spacing: .18em;
+
+  opacity: .62;
+
+}
+
+
+.actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+
+button {
+
+  appearance: none;
+
+  height: 38px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 12px;
+
+  padding:
+    0 13px;
+
+  background: #fff;
+
+  color: var(--ink);
+
+  cursor: pointer;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  font-size: 13px;
+
+}
+
+
+button:hover {
+
+  border-color: #c9c0bb;
+
+  box-shadow:
+    0 4px 14px
+    rgba(0,0,0,.06);
+
+}
+
+
+.primary {
+
+  background:
+    var(--wine);
+
+  border-color:
+    var(--wine);
+
+  color:
+    #ffffff;
+
+}
+
+
+/* PALCO */
+
+main {
+
+  width: 100%;
+
+  min-height: 0;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  position: relative;
+
+  padding:
+    14px
+    20px
+    8px;
+
+  overflow: hidden;
+
+}
+
+
+/* LIVRO */
+
+#book {
+
+  filter:
+    drop-shadow(
+      0
+      18px
+      28px
+      rgba(31,24,20,.18)
+    );
+
+}
+
+
+/* AJUDA */
+
+.hint {
+
+  position: absolute;
+
+  left: 18px;
+
+  bottom: 8px;
+
+  font-size: 11px;
+
+  opacity: .55;
+
+  pointer-events: none;
+
+}
+
+
+/* RODAPÉ */
+
+footer {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 14px;
+
+}
+
+
+.counter {
+
+  min-width: 88px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-variant-numeric:
+    tabular-nums;
+
+}
+
+
+/* MOBILE */
+
+.mobile-label {
+  display: none;
+}
+
+
+@media(max-width:720px) {
+
+  .app {
+
+    grid-template-rows:
+      58px
+      minmax(0, 1fr)
+      50px;
+
+  }
+
+
+  header {
+
+    padding:
+      0 12px;
+
+  }
+
+
+  .brand strong {
+
+    font-size: 15px;
+
+  }
+
+
+  .brand span {
+
+    font-size: 9px;
+
+  }
+
+
+  main {
+
+    padding:
+      8px
+      4px
+      4px;
+
+  }
+
+
+  .hint {
+
+    display: none;
+
+  }
+
+
+  .desktop-label {
+
+    display: none;
+
+  }
+
+
+  .mobile-label {
+
+    display: inline;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<header>
+
+
+  <div class="brand">
+
+    <strong>
+      Maria Emília
+    </strong>
+
+    <span>
+      Inverno 2027
+    </span>
+
+  </div>
+
+
+  <div class="actions">
+
+    <button
+      id="fullscreen"
+      class="primary"
+      type="button"
+    >
+
+      <span>
+        ⛶
+      </span>
+
+      <span class="desktop-label">
+        Tela cheia
+      </span>
+
+    </button>
+
+  </div>
+
+
+</header>
+
+
+
+<main id="stage">
+
+  <div id="book"></div>
+
+  <div class="hint">
+    Clique e arraste o canto da página para folhear.
+  </div>
+
+</main>
+
+
+
+<footer>
+
+  <button
+    id="prev"
+    type="button"
+    aria-label="Página anterior"
+  >
+    ←
+  </button>
+
+  <div
+    id="counter"
+    class="counter"
+  >
+    1 / 3
+  </div>
+
+  <button
+    id="next"
+    type="button"
+    aria-label="Próxima página"
+  >
+    →
+  </button>
+
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+const total = 3;
+
+
+/*
+  COMO O INDEX.HTML ESTÁ
+  NA MESMA PASTA DAS IMAGENS,
+  NÃO PRECISAMOS DE URLs GRANDES.
+*/
+
+const images = [
+
+  "pagina-01.jpg",
+
+  "pagina-02.jpg",
+
+  "pagina-03.jpg"
+
+];
+
+
+const bookEl =
+  document.getElementById(
+    "book"
+  );
+
+
+const stage =
+  document.getElementById(
+    "stage"
+  );
+
+
+let flip = null;
+
+let resizeTimer = null;
+
+
+const PAGE_RATIO =
+  210 / 297;
+
+
+
+function getSize() {
+
+
+  const mobile =
+    window.innerWidth <= 720;
+
+
+  /*
+    ALTURA REAL DISPONÍVEL
+    ENTRE O TOPO E O RODAPÉ
+    DO PRÓPRIO CATÁLOGO.
+  */
+
+  const availableHeight =
+    stage.clientHeight - 20;
+
+
+  const availableWidth =
+    stage.clientWidth - 30;
+
+
+  let h =
+    Math.min(
+      availableHeight,
+      790
+    );
+
+
+  let w =
+    h *
+    PAGE_RATIO;
+
+
+  /*
+    CELULAR:
+    UMA PÁGINA
+  */
+
+  if (mobile) {
+
+
+    if (
+      w >
+      availableWidth
+    ) {
+
+
+      w =
+        availableWidth;
+
+
+      h =
+        w /
+        PAGE_RATIO;
+
+
+    }
+
+
+  }
+
+
+  /*
+    DESKTOP:
+    DUAS PÁGINAS
+  */
+
+  else {
+
+
+    const spreadWidth =
+      w * 2;
+
+
+    if (
+      spreadWidth >
+      availableWidth
+    ) {
+
+
+      w =
+        availableWidth /
+        2;
+
+
+      h =
+        w /
+        PAGE_RATIO;
+
+
+    }
+
+
+  }
+
+
+  return {
+
+    w:
+      Math.floor(w),
+
+    h:
+      Math.floor(h),
+
+    mobile
+
+  };
+
+}
+
+
+
+function buildBook() {
+
+
+  if (
+    !window.St ||
+    !St.PageFlip
+  ) {
+
+
+    setTimeout(
+      buildBook,
+      150
+    );
+
+
+    return;
+
+  }
+
+
+  if (flip) {
+
+
+    try {
+
+      flip.destroy();
+
+    }
+
+    catch(e) {}
+
+
+    bookEl.innerHTML =
+      "";
+
+
+  }
+
+
+  const {
+    w,
+    h,
+    mobile
+  } =
+  getSize();
+
+
+
+  /*
+    PAGE FLIP ORIGINAL
+  */
+
+  flip =
+    new St.PageFlip(
+      bookEl,
+      {
+
+        width:
+          w,
+
+        height:
+          h,
+
+
+        size:
+          "fixed",
+
+
+        minWidth:
+          240,
+
+        maxWidth:
+          900,
+
+
+        minHeight:
+          340,
+
+        maxHeight:
+          1273,
+
+
+        /*
+          CAPA SOZINHA
+        */
+
+        showCover:
+          true,
+
+
+        /*
+          MOBILE =
+          UMA PÁGINA
+        */
+
+        usePortrait:
+          mobile,
+
+
+        mobileScrollSupport:
+          true,
+
+
+        /*
+          SOMBRA REAL DA
+          VIRADA
+        */
+
+        drawShadow:
+          true,
+
+
+        maxShadowOpacity:
+          .35,
+
+
+        /*
+          ANIMAÇÃO
+        */
+
+        flippingTime:
+          650,
+
+
+        /*
+          MOUSE
+        */
+
+        useMouseEvents:
+          true,
+
+
+        clickEventForward:
+          true,
+
+
+        /*
+          COMEÇA NA CAPA
+        */
+
+        startPage:
+          0
+
+      }
+    );
+
+
+
+  /*
+    IMPORTANTE:
+    USA O EFEITO DE PÁGINA
+    ORIGINAL QUE VOCÊ GOSTOU.
+  */
+
+  flip.loadFromImages(
+    images
+  );
+
+
+
+  flip.on(
+    "flip",
+    function(e) {
+
+      updateCounter(
+        e.data
+      );
+
+    }
+  );
+
+
+  updateCounter(
+    0
+  );
+
+}
+
+
+
+function updateCounter(index) {
+
+
+  document
+    .getElementById(
+      "counter"
+    )
+    .textContent =
+
+      (index + 1)
+      +
+      " / "
+      +
+      total;
+
+}
+
+
+
+document
+  .getElementById(
+    "prev"
+  )
+  .addEventListener(
+    "click",
+    function() {
+
+      if (flip) {
+
+        flip.flipPrev();
+
+      }
+
+    }
+  );
+
+
+
+document
+  .getElementById(
+    "next"
+  )
+  .addEventListener(
+    "click",
+    function() {
+
+      if (flip) {
+
+        flip.flipNext();
+
+      }
+
+    }
+  );
+
+
+
+document
+  .getElementById(
+    "fullscreen"
+  )
+  .addEventListener(
+    "click",
+    async function() {
+
+
+      try {
+
+
+        if (
+          !document
+            .fullscreenElement
+        ) {
+
+
+          await document
+            .documentElement
+            .requestFullscreen();
+
+
+        }
+
+
+        else {
+
+
+          await document
+            .exitFullscreen();
+
+
+        }
+
+
+      }
+
+      catch(e) {}
+
+
+    }
+  );
+
+
+
+document
+  .addEventListener(
+    "keydown",
+    function(e) {
+
+
+      if (!flip) {
+
+        return;
+
+      }
+
+
+      if (
+        e.key ===
+        "ArrowLeft"
+      ) {
+
+        flip.flipPrev();
+
+      }
+
+
+      if (
+        e.key ===
+        "ArrowRight"
+      ) {
+
+        flip.flipNext();
+
+      }
+
+
+    }
+  );
+
+
+
+window
+  .addEventListener(
+    "resize",
+    function() {
+
+
+      clearTimeout(
+        resizeTimer
+      );
+
+
+      resizeTimer =
+        setTimeout(
+          buildBook,
+          250
+        );
+
+
+    }
+  );
+
+
+
+buildBook();
+
+</script>
+
+
+</body>
+</html>
