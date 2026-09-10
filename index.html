@@ -561,66 +561,98 @@
 
 const total = 28;
 
+/* ========================================
+   PÁGINAS
+======================================== */
 
-const images = [
+const total = 28;
 
+
+/* IMAGENS DO DESKTOP */
+
+const desktopImages = [
   "pagina-01.jpg",
-
   "pagina-02.jpg",
-
   "pagina-03.jpg",
-
   "pagina-04.jpg",
-
   "pagina-05.jpg",
-
   "pagina-06.jpg",
-
   "pagina-07.jpg",
-
   "pagina-08.jpg",
-
   "pagina-09.jpg",
-
   "pagina-10.jpg",
-
   "pagina-11.jpg",
-
   "pagina-12.jpg",
-
   "pagina-13.jpg",
-
   "pagina-14.jpg",
-
   "pagina-15.jpg",
-
   "pagina-16.jpg",
-
   "pagina-17.jpg",
-
   "pagina-18.jpg",
-
   "pagina-19.jpg",
-
   "pagina-20.jpg",
-
   "pagina-21.jpg",
-
   "pagina-22.jpg",
-
   "pagina-23.jpg",
-
   "pagina-24.jpg",
-
   "pagina-25.jpg",
-
   "pagina-26.jpg",
-
   "pagina-27.jpg",
-
   "pagina-28.jpg"
-
 ];
+
+
+/* IMAGENS DO CELULAR */
+
+const mobileImages = [
+  "pagina-01-mob.png",
+  "pagina-02-mob.png",
+  "pagina-03-mob.png",
+  "pagina-04-mob.png",
+  "pagina-05-mob.png",
+  "pagina-06-mob.png",
+  "pagina-07-mob.png",
+  "pagina-08-mob.png",
+  "pagina-09-mob.png",
+  "pagina-10-mob.png",
+  "pagina-11-mob.png",
+  "pagina-12-mob.png",
+  "pagina-13-mob.png",
+  "pagina-14-mob.png",
+  "pagina-15-mob.png",
+  "pagina-16-mob.png",
+  "pagina-17-mob.png",
+  "pagina-18-mob.png",
+  "pagina-19-mob.png",
+  "pagina-20-mob.png",
+  "pagina-21-mob.png",
+  "pagina-22-mob.png",
+  "pagina-23-mob.png",
+  "pagina-24-mob.png",
+  "pagina-25-mob.png",
+  "pagina-26-mob.png",
+  "pagina-27-mob.png",
+  "pagina-28-mob.png"
+];
+
+
+/* ESCOLHE AUTOMATICAMENTE */
+
+const images =
+  window.innerWidth <= 720
+    ? mobileImages
+    : desktopImages;
+
+
+
+/* ========================================
+   ELEMENTOS
+======================================== */
+
+const app =
+  document.getElementById(
+    "catalogApp"
+  );
 
 
 
