@@ -78,7 +78,6 @@
 
     header {
       display: flex;
-
       align-items: center;
       justify-content: space-between;
 
@@ -97,35 +96,26 @@
 
     .brand {
       display: flex;
-
       flex-direction: column;
-
       line-height: 1.05;
     }
 
     .brand strong {
       font-size: 17px;
-
       letter-spacing: .04em;
     }
 
     .brand span {
       margin-top: 5px;
-
       font-size: 11px;
-
       text-transform: uppercase;
-
       letter-spacing: .18em;
-
       opacity: .62;
     }
 
     .actions {
       display: flex;
-
       align-items: center;
-
       gap: 8px;
     }
 
@@ -133,7 +123,6 @@
       appearance: none;
 
       height: 38px;
-
       min-width: 38px;
 
       border:
@@ -207,6 +196,7 @@
       display: flex;
 
       justify-content: center;
+
       align-items: center;
 
       position: relative;
@@ -218,7 +208,7 @@
 
 
     /* ========================================
-       JANELA QUE RECORTA O LIVRO
+       JANELA DO LIVRO
     ======================================== */
 
     #bookViewport {
@@ -268,34 +258,19 @@
 
       transform-origin:
         left center;
+
+      background:
+        transparent !important;
     }
-
-
-    /*
-      Remove espaçamentos externos
-      dos elementos criados pelo PageFlip.
-    */
 
     #book > *,
     #book canvas {
       margin: 0 !important;
-
       padding: 0 !important;
     }
 
     #book canvas {
       display: block;
-    }
-
-
-    /*
-      Não deixa o fundo artificial
-      do livro aparecer.
-    */
-
-    #book {
-      background:
-        transparent !important;
     }
 
 
@@ -356,6 +331,7 @@
 
     .app:fullscreen {
       width: 100vw;
+
       height: 100vh;
 
       background:
@@ -445,10 +421,6 @@
 >
 
 
-  <!-- ========================================
-       CABEÇALHO
-  ========================================= -->
-
   <header>
 
     <div class="brand">
@@ -493,10 +465,6 @@
 
 
 
-  <!-- ========================================
-       CATÁLOGO
-  ========================================= -->
-
   <main id="stage">
 
     <div id="bookViewport">
@@ -505,7 +473,6 @@
 
     </div>
 
-
     <div class="hint">
       Clique e arraste o canto da página para folhear.
     </div>
@@ -513,10 +480,6 @@
   </main>
 
 
-
-  <!-- ========================================
-       CONTROLES
-  ========================================= -->
 
   <footer>
 
@@ -556,19 +519,15 @@
 
 
 /* ========================================
-   PÁGINAS
+   TOTAL
 ======================================== */
 
 const total = 28;
+
 
 /* ========================================
-   PÁGINAS
+   IMAGENS DESKTOP
 ======================================== */
-
-const total = 28;
-
-
-/* IMAGENS DO DESKTOP */
 
 const desktopImages = [
   "pagina-01.jpg",
@@ -602,7 +561,9 @@ const desktopImages = [
 ];
 
 
-/* IMAGENS DO CELULAR */
+/* ========================================
+   IMAGENS MOBILE
+======================================== */
 
 const mobileImages = [
   "pagina-01-mob.png",
@@ -636,24 +597,18 @@ const mobileImages = [
 ];
 
 
-/* ESCOLHE AUTOMATICAMENTE */
-
-const images =
-  window.innerWidth <= 720
-    ? mobileImages
-    : desktopImages;
-
-
-
 /* ========================================
-   ELEMENTOS
+   ESCOLHE DESKTOP OU MOBILE
 ======================================== */
 
-const app =
-  document.getElementById(
-    "catalogApp"
-  );
+const isMobile =
+  window.innerWidth <= 720;
 
+
+const images =
+  isMobile
+    ? mobileImages
+    : desktopImages;
 
 
 /* ========================================
@@ -696,7 +651,6 @@ const fullscreenBtn =
   );
 
 
-
 /* ========================================
    VARIÁVEIS
 ======================================== */
@@ -709,10 +663,6 @@ let resizeTimer =
   null;
 
 
-/*
-  Tamanho REAL de uma página.
-*/
-
 let pageWidth =
   0;
 
@@ -721,21 +671,12 @@ let pageHeight =
   0;
 
 
-/*
-  Guarda a página atual.
-*/
-
 let currentPage =
   0;
 
 
-/*
-  A4
-*/
-
 const PAGE_RATIO =
   210 / 297;
-
 
 
 /* ========================================
@@ -763,11 +704,6 @@ function getSize() {
     );
 
 
-  /*
-    Usa praticamente toda
-    a altura disponível.
-  */
-
   let h =
     Math.min(
       availableHeight,
@@ -779,11 +715,6 @@ function getSize() {
     h *
     PAGE_RATIO;
 
-
-
-  /*
-    MOBILE
-  */
 
   if (mobile) {
 
@@ -808,10 +739,6 @@ function getSize() {
 
   }
 
-
-  /*
-    DESKTOP
-  */
 
   else {
 
@@ -838,7 +765,6 @@ function getSize() {
   }
 
 
-
   return {
 
     w:
@@ -852,7 +778,6 @@ function getSize() {
   };
 
 }
-
 
 
 /* ========================================
@@ -882,10 +807,8 @@ function applyBookView(
     total;
 
 
-
   /*
-    No celular o livro já trabalha
-    com uma única página.
+    MOBILE
   */
 
   if (
@@ -912,16 +835,8 @@ function applyBookView(
   }
 
 
-
   /*
-    PÁGINA 1
-
-    O PageFlip coloca a capa
-    na metade direita do livro.
-
-    A janela fica com largura
-    de uma página e deslocamos
-    o livro para mostrar somente ela.
+    CAPA
   */
 
   if (
@@ -950,14 +865,8 @@ function applyBookView(
   }
 
 
-
   /*
     ÚLTIMA PÁGINA
-
-    Ela fica sozinha no lado esquerdo.
-
-    A metade branca à direita
-    fica fora da janela.
   */
 
   if (
@@ -985,12 +894,8 @@ function applyBookView(
   }
 
 
-
   /*
     PÁGINAS INTERNAS
-
-    Mostra o livro inteiro:
-    esquerda + direita.
   */
 
   bookViewport.style.width =
@@ -1007,7 +912,6 @@ function applyBookView(
     "translateX(0)";
 
 }
-
 
 
 /* ========================================
@@ -1034,7 +938,6 @@ function initBook() {
   }
 
 
-
   const size =
     getSize();
 
@@ -1045,7 +948,6 @@ function initBook() {
 
   pageHeight =
     size.h;
-
 
 
   bookEl.style.width =
@@ -1063,13 +965,6 @@ function initBook() {
     "px";
 
 
-
-  /*
-    Antes mesmo do PageFlip aparecer,
-    já colocamos o viewport no tamanho
-    correto da capa.
-  */
-
   bookViewport.style.width =
     pageWidth +
     "px";
@@ -1078,7 +973,6 @@ function initBook() {
   bookViewport.style.height =
     pageHeight +
     "px";
-
 
 
   flip =
@@ -1154,17 +1048,10 @@ function initBook() {
     );
 
 
-
   flip.loadFromImages(
     images
   );
 
-
-
-  /*
-    Quando a página termina
-    de virar.
-  */
 
   flip.on(
     "flip",
@@ -1180,17 +1067,11 @@ function initBook() {
   );
 
 
-
-  /*
-    Inicializa a capa.
-  */
-
   applyBookView(
     0
   );
 
 }
-
 
 
 /* ========================================
@@ -1237,7 +1118,6 @@ document
   );
 
 
-
 /* ========================================
    TECLADO
 ======================================== */
@@ -1278,7 +1158,6 @@ document.addEventListener(
 
   }
 );
-
 
 
 /* ========================================
@@ -1347,9 +1226,8 @@ fullscreenBtn
   );
 
 
-
 /* ========================================
-   RECALCULA DEPOIS DO FULLSCREEN
+   FULLSCREEN CHANGE
 ======================================== */
 
 document.addEventListener(
@@ -1361,12 +1239,6 @@ document.addEventListener(
       resizeTimer
     );
 
-
-    /*
-      O navegador precisa terminar
-      a transição antes de medirmos
-      a nova área.
-    */
 
     resizeTimer =
       setTimeout(
@@ -1382,14 +1254,6 @@ document.addEventListener(
             getSize();
 
 
-
-          /*
-            Atualiza as variáveis também.
-
-            Esta parte estava faltando
-            no código anterior.
-          */
-
           pageWidth =
             size.w;
 
@@ -1397,11 +1261,6 @@ document.addEventListener(
           pageHeight =
             size.h;
 
-
-
-          /*
-            Atualiza a caixa externa.
-          */
 
           bookEl.style.width =
             size.mobile
@@ -1418,12 +1277,6 @@ document.addEventListener(
             "px";
 
 
-
-          /*
-            Pede para o PageFlip
-            recalcular o canvas.
-          */
-
           if (
             typeof flip.update ===
             "function"
@@ -1435,12 +1288,6 @@ document.addEventListener(
 
           }
 
-
-
-          /*
-            Espera o PageFlip recalcular
-            e aplica novamente o recorte.
-          */
 
           requestAnimationFrame(
             function() {
@@ -1477,7 +1324,6 @@ document.addEventListener(
 );
 
 
-
 /* ========================================
    RESIZE
 ======================================== */
@@ -1506,14 +1352,12 @@ window.addEventListener(
             getSize();
 
 
-
           pageWidth =
             size.w;
 
 
           pageHeight =
             size.h;
-
 
 
           bookEl.style.width =
@@ -1568,7 +1412,6 @@ window.addEventListener(
 
   }
 );
-
 
 
 /* ========================================
