@@ -54,11 +54,6 @@
       overflow: hidden;
     }
 
-
-    /* ========================================
-       APP
-    ======================================== */
-
     .app {
       width: 100%;
       height: 100%;
@@ -71,11 +66,6 @@
         54px;
     }
 
-
-    /* ========================================
-       CABEÇALHO
-    ======================================== */
-
     header {
       display: flex;
       align-items: center;
@@ -83,8 +73,7 @@
 
       padding: 0 20px;
 
-      background:
-        rgba(255,255,255,.94);
+      background: rgba(255,255,255,.94);
 
       border-bottom:
         1px solid var(--line);
@@ -133,15 +122,12 @@
       padding: 0 13px;
 
       background: #fff;
-
       color: var(--ink);
 
       cursor: pointer;
 
       display: inline-flex;
-
       align-items: center;
-
       justify-content: center;
 
       gap: 7px;
@@ -182,11 +168,6 @@
         #ffffff;
     }
 
-
-    /* ========================================
-       ÁREA DO CATÁLOGO
-    ======================================== */
-
     main {
       width: 100%;
 
@@ -196,7 +177,6 @@
       display: flex;
 
       justify-content: center;
-
       align-items: center;
 
       position: relative;
@@ -205,11 +185,6 @@
 
       overflow: hidden;
     }
-
-
-    /* ========================================
-       JANELA DO LIVRO
-    ======================================== */
 
     #bookViewport {
       position: relative;
@@ -221,18 +196,12 @@
       display: block;
 
       margin: 0;
-
       padding: 0;
 
       transition:
         width .32s ease,
         height .32s ease;
     }
-
-
-    /* ========================================
-       PAGE FLIP
-    ======================================== */
 
     #book {
       position: relative;
@@ -242,7 +211,6 @@
       flex: 0 0 auto;
 
       margin: 0;
-
       padding: 0;
 
       transition:
@@ -273,16 +241,38 @@
       display: block;
     }
 
+    .mobile-page {
+      width: 100%;
+      height: 100%;
 
-    /* ========================================
-       AJUDA
-    ======================================== */
+      background: #fff;
+
+      overflow: hidden;
+    }
+
+    .mobile-page img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      background: #fff;
+
+      user-select: none;
+      -webkit-user-drag: none;
+
+      image-rendering: auto;
+
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
 
     .hint {
       position: absolute;
 
       left: 18px;
-
       bottom: 8px;
 
       font-size: 11px;
@@ -292,16 +282,10 @@
       pointer-events: none;
     }
 
-
-    /* ========================================
-       RODAPÉ
-    ======================================== */
-
     footer {
       display: flex;
 
       align-items: center;
-
       justify-content: center;
 
       gap: 14px;
@@ -324,14 +308,8 @@
       display: none;
     }
 
-
-    /* ========================================
-       FULLSCREEN
-    ======================================== */
-
     .app:fullscreen {
       width: 100vw;
-
       height: 100vh;
 
       background:
@@ -342,11 +320,6 @@
           #ebe7e4 100%
         );
     }
-
-
-    /* ========================================
-       MOBILE
-    ======================================== */
 
     @media(max-width:720px) {
 
@@ -374,9 +347,7 @@
 
       main {
         padding:
-          8px
-          4px
-          4px;
+          4px 0 0;
       }
 
       .hint {
@@ -403,6 +374,16 @@
 
         padding:
           0 10px;
+      }
+
+      #book {
+        filter:
+          drop-shadow(
+            0
+            8px
+            14px
+            rgba(31,24,20,.14)
+          );
       }
 
     }
@@ -526,7 +507,7 @@ const total = 28;
 
 
 /* ========================================
-   IMAGENS DESKTOP
+   DESKTOP
 ======================================== */
 
 const desktopImages = [
@@ -562,7 +543,7 @@ const desktopImages = [
 
 
 /* ========================================
-   IMAGENS MOBILE
+   MOBILE
 ======================================== */
 
 const mobileImages = [
@@ -598,20 +579,6 @@ const mobileImages = [
 
 
 /* ========================================
-   ESCOLHE DESKTOP OU MOBILE
-======================================== */
-
-const isMobile =
-  window.innerWidth <= 720;
-
-
-const images =
-  isMobile
-    ? mobileImages
-    : desktopImages;
-
-
-/* ========================================
    ELEMENTOS
 ======================================== */
 
@@ -620,30 +587,25 @@ const app =
     "catalogApp"
   );
 
-
 const stage =
   document.getElementById(
     "stage"
   );
-
 
 const bookViewport =
   document.getElementById(
     "bookViewport"
   );
 
-
 const bookEl =
   document.getElementById(
     "book"
   );
 
-
 const counter =
   document.getElementById(
     "counter"
   );
-
 
 const fullscreenBtn =
   document.getElementById(
@@ -658,25 +620,31 @@ const fullscreenBtn =
 let flip =
   null;
 
-
 let resizeTimer =
   null;
-
 
 let pageWidth =
   0;
 
-
 let pageHeight =
   0;
-
 
 let currentPage =
   0;
 
-
 const PAGE_RATIO =
   210 / 297;
+
+
+/* ========================================
+   MOBILE?
+======================================== */
+
+function isMobileMode() {
+
+  return window.innerWidth <= 720;
+
+}
 
 
 /* ========================================
@@ -685,10 +653,8 @@ const PAGE_RATIO =
 
 function getSize() {
 
-
   const mobile =
-    window.innerWidth <= 720;
-
+    isMobileMode();
 
   const availableHeight =
     Math.max(
@@ -696,20 +662,17 @@ function getSize() {
       stage.clientHeight - 8
     );
 
-
   const availableWidth =
     Math.max(
       280,
       stage.clientWidth - 8
     );
 
-
   let h =
     Math.min(
       availableHeight,
       790
     );
-
 
   let w =
     h *
@@ -718,49 +681,60 @@ function getSize() {
 
   if (mobile) {
 
+    /*
+      No mobile usamos praticamente
+      toda a largura disponível.
+    */
+
+    w =
+      Math.min(
+        availableWidth,
+        520
+      );
+
+    h =
+      w /
+      PAGE_RATIO;
+
+
+    /*
+      Se a página ficar alta demais,
+      limita pela altura disponível.
+    */
 
     if (
-      w >
-      availableWidth
+      h >
+      availableHeight
     ) {
 
+      h =
+        availableHeight;
 
       w =
-        availableWidth;
-
-
-      h =
-        w /
+        h *
         PAGE_RATIO;
 
-
     }
-
 
   }
 
 
   else {
 
-
     if (
       (w * 2) >
       availableWidth
     ) {
 
-
       w =
         availableWidth /
         2;
-
 
       h =
         w /
         PAGE_RATIO;
 
-
     }
-
 
   }
 
@@ -781,13 +755,12 @@ function getSize() {
 
 
 /* ========================================
-   DEFINE A JANELA VISÍVEL
+   VIEWPORT
 ======================================== */
 
 function applyBookView(
   index
 ) {
-
 
   currentPage =
     Math.max(
@@ -812,23 +785,19 @@ function applyBookView(
   */
 
   if (
-    window.innerWidth <= 720
+    isMobileMode()
   ) {
-
 
     bookViewport.style.width =
       pageWidth +
       "px";
 
-
     bookViewport.style.height =
       pageHeight +
       "px";
 
-
     bookEl.style.transform =
       "translateX(0)";
-
 
     return;
 
@@ -836,29 +805,25 @@ function applyBookView(
 
 
   /*
-    CAPA
+    CAPA DESKTOP
   */
 
   if (
     currentPage === 0
   ) {
 
-
     bookViewport.style.width =
       pageWidth +
       "px";
-
 
     bookViewport.style.height =
       pageHeight +
       "px";
 
-
     bookEl.style.transform =
       "translateX(-" +
       pageWidth +
       "px)";
-
 
     return;
 
@@ -874,20 +839,16 @@ function applyBookView(
     total - 1
   ) {
 
-
     bookViewport.style.width =
       pageWidth +
       "px";
-
 
     bookViewport.style.height =
       pageHeight +
       "px";
 
-
     bookEl.style.transform =
       "translateX(0)";
-
 
     return;
 
@@ -902,11 +863,9 @@ function applyBookView(
     (pageWidth * 2) +
     "px";
 
-
   bookViewport.style.height =
     pageHeight +
     "px";
-
 
   bookEl.style.transform =
     "translateX(0)";
@@ -915,23 +874,88 @@ function applyBookView(
 
 
 /* ========================================
-   INICIA O LIVRO
+   CRIA PÁGINAS HTML MOBILE
+======================================== */
+
+function createMobilePages() {
+
+  bookEl.innerHTML =
+    "";
+
+
+  mobileImages.forEach(
+    function(src, index) {
+
+      const page =
+        document.createElement(
+          "div"
+        );
+
+
+      page.className =
+        "mobile-page";
+
+
+      const img =
+        document.createElement(
+          "img"
+        );
+
+
+      img.src =
+        src;
+
+
+      img.alt =
+        "Página " +
+        (index + 1) +
+        " do Catálogo Inverno 2027";
+
+
+      img.loading =
+        index <= 2
+          ? "eager"
+          : "lazy";
+
+
+      img.decoding =
+        "async";
+
+
+      img.draggable =
+        false;
+
+
+      page.appendChild(
+        img
+      );
+
+
+      bookEl.appendChild(
+        page
+      );
+
+    }
+  );
+
+}
+
+
+/* ========================================
+   INICIA
 ======================================== */
 
 function initBook() {
-
 
   if (
     !window.St ||
     !St.PageFlip
   ) {
 
-
     setTimeout(
       initBook,
       150
     );
-
 
     return;
 
@@ -986,10 +1010,8 @@ function initBook() {
         height:
           pageHeight,
 
-
         size:
           "fixed",
-
 
         minWidth:
           240,
@@ -997,49 +1019,38 @@ function initBook() {
         maxWidth:
           900,
 
-
         minHeight:
           340,
 
         maxHeight:
           1273,
 
-
         showCover:
           true,
-
 
         usePortrait:
           size.mobile,
 
-
         mobileScrollSupport:
           true,
-
 
         drawShadow:
           true,
 
-
         maxShadowOpacity:
           .35,
-
 
         flippingTime:
           650,
 
-
         useMouseEvents:
           true,
-
 
         clickEventForward:
           true,
 
-
         showPageCorners:
           true,
-
 
         startPage:
           0
@@ -1048,20 +1059,54 @@ function initBook() {
     );
 
 
-  flip.loadFromImages(
-    images
-  );
+  /*
+    DESKTOP:
+    continua exatamente usando
+    loadFromImages.
+  */
+
+  if (
+    !size.mobile
+  ) {
+
+    flip.loadFromImages(
+      desktopImages
+    );
+
+  }
+
+
+  /*
+    MOBILE:
+    renderiza as imagens
+    como elementos HTML reais.
+  */
+
+  else {
+
+    createMobilePages();
+
+
+    const pages =
+      bookEl.querySelectorAll(
+        ".mobile-page"
+      );
+
+
+    flip.loadFromHTML(
+      pages
+    );
+
+  }
 
 
   flip.on(
     "flip",
     function(e) {
 
-
       applyBookView(
         e.data
       );
-
 
     }
   );
@@ -1086,13 +1131,11 @@ document
     "click",
     function() {
 
-
       if (flip) {
 
         flip.flipPrev();
 
       }
-
 
     }
   );
@@ -1106,13 +1149,11 @@ document
     "click",
     function() {
 
-
       if (flip) {
 
         flip.flipNext();
 
       }
-
 
     }
   );
@@ -1126,7 +1167,6 @@ document.addEventListener(
   "keydown",
   function(e) {
 
-
     if (!flip) {
       return;
     }
@@ -1137,9 +1177,7 @@ document.addEventListener(
       "ArrowLeft"
     ) {
 
-
       flip.flipPrev();
-
 
     }
 
@@ -1149,19 +1187,16 @@ document.addEventListener(
       "ArrowRight"
     ) {
 
-
       flip.flipNext();
 
-
     }
-
 
   }
 );
 
 
 /* ========================================
-   TELA CHEIA
+   FULLSCREEN
 ======================================== */
 
 fullscreenBtn
@@ -1169,58 +1204,45 @@ fullscreenBtn
     "click",
     async function() {
 
-
       if (flip) {
-
 
         currentPage =
           flip
             .getCurrentPageIndex();
-
 
       }
 
 
       try {
 
-
         if (
           !document
             .fullscreenElement
         ) {
 
-
           await app
             .requestFullscreen();
 
-
         }
 
-
         else {
-
 
           await document
             .exitFullscreen();
 
-
         }
-
 
       }
 
 
       catch(e) {
 
-
         console.error(
           "Erro ao abrir tela cheia:",
           e
         );
 
-
       }
-
 
     }
   );
@@ -1234,7 +1256,6 @@ document.addEventListener(
   "fullscreenchange",
   function() {
 
-
     clearTimeout(
       resizeTimer
     );
@@ -1243,7 +1264,6 @@ document.addEventListener(
     resizeTimer =
       setTimeout(
         function() {
-
 
           if (!flip) {
             return;
@@ -1282,43 +1302,29 @@ document.addEventListener(
             "function"
           ) {
 
-
             flip.update();
 
-
           }
+
+
+          currentPage =
+            flip
+              .getCurrentPageIndex();
 
 
           requestAnimationFrame(
             function() {
 
-
-              requestAnimationFrame(
-                function() {
-
-
-                  currentPage =
-                    flip
-                      .getCurrentPageIndex();
-
-
-                  applyBookView(
-                    currentPage
-                  );
-
-
-                }
+              applyBookView(
+                currentPage
               );
-
 
             }
           );
 
-
         },
         250
       );
-
 
   }
 );
@@ -1332,7 +1338,6 @@ window.addEventListener(
   "resize",
   function() {
 
-
     clearTimeout(
       resizeTimer
     );
@@ -1341,7 +1346,6 @@ window.addEventListener(
     resizeTimer =
       setTimeout(
         function() {
-
 
           if (!flip) {
             return;
@@ -1380,9 +1384,7 @@ window.addEventListener(
             "function"
           ) {
 
-
             flip.update();
-
 
           }
 
@@ -1392,23 +1394,13 @@ window.addEventListener(
               .getCurrentPageIndex();
 
 
-          requestAnimationFrame(
-            function() {
-
-
-              applyBookView(
-                currentPage
-              );
-
-
-            }
+          applyBookView(
+            currentPage
           );
-
 
         },
         300
       );
-
 
   }
 );
